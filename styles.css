@@ -241,3 +241,87 @@ footer {
     flex-wrap: wrap;
   }
 }
+
+/* INHABIT — MOBILE */
+
+@media (max-width: 700px) {
+
+  .topbar {
+    padding: 14px 18px;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  #saveBtn {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .workspace {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editor {
+    order: 1;
+    padding: 18px 14px;
+  }
+
+  .sidebar {
+    order: 2;
+    border-right: none;
+    border-top: 1px solid var(--line);
+    padding: 20px 14px;
+  }
+
+  .editor-heading {
+    align-items: flex-end;
+  }
+
+  h1 {
+    font-size: 34px;
+    letter-spacing: -1.5px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  #resetBtn {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .canvas {
+    width: 100%;
+    height: 58vh;
+    min-height: 350px;
+    max-height: 650px;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .toolbar button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .add-btn {
+    display: inline-block;
+    width: calc(50% - 8px);
+    min-height: 48px;
+    margin-right: 5px;
+  }
+
+  footer {
+    padding: 18px 14px;
+    font-size: 10px;
+  }
+}
