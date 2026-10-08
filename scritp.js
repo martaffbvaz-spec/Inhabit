@@ -708,3 +708,4 @@ loadData();
 loadWallpaper();
 renderObjects();
 renderCollection();
+alert("O JavaScript está a funcionar!"); 
