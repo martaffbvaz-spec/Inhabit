@@ -1,68 +1,198 @@
 
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INHABIT — Your little world</title>
+
+  <title>INHABIT — Your personal space</title>
+
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
 
-  <header class="topbar">
-    <a class="logo" href="#">inhabit<span>✳</span></a>
-    <p>make a little world of your own</p>
-    <button id="saveBtn">save space ↗</button>
+  <!-- ENTRADA / LOGÓTIPO -->
+
+  <header class="site-header">
+    <h1 id="logo" class="logo">INHABIT</h1>
+
+    <div class="header-actions">
+      <span>YOUR PERSONAL SPACE / 001</span>
+      <button id="saveBtn" type="button">SAVE ↗</button>
+    </div>
   </header>
 
-  <main class="workspace">
+  <!-- TELA PRINCIPAL -->
 
-    <aside class="sidebar">
-      <h2>add something ✳</h2>
-      <p class="sidebar-note">a little bit of everything</p>
+  <main id="workspace" class="workspace">
 
-      <button class="add-btn" data-type="plant">✿ plant</button>
-      <button class="add-btn" data-type="chair">▧ chair</button>
-      <button class="add-btn" data-type="lamp">✳ lamp</button>
-      <button class="add-btn" data-type="art">▣ artwork</button>
+    <section id="canvas" class="canvas"
+      aria-label="O teu espaço de criação">
 
-      <hr>
+      <!-- Os objetos serão inseridos aqui pelo JavaScript -->
 
-      <h3>your collection</h3>
-      <p class="sidebar-note">more objects coming soon...</p>
-    </aside>
-
-    <section class="editor">
-      <div class="editor-heading">
-        <div>
-          <span class="eyebrow">YOUR PERSONAL COLLAGE</span>
-          <h1>my little space.</h1>
-        </div>
-        <button id="resetBtn">start again ↺</button>
-      </div>
-
-      <div id="canvas" class="canvas">
-        <span class="canvas-hint">a blank space, just for you ♡</span>
-      </div>
-
-      <div class="toolbar">
-        <span>select an object to edit it</span>
-        <div>
-          <button id="smallerBtn">−</button>
-          <button id="biggerBtn">＋</button>
-          <button id="rotateBtn">↻</button>
-          <button id="deleteBtn">✕</button>
-        </div>
-      </div>
     </section>
+
+    <!-- MENU FLUTUANTE -->
+
+    <div class="floating-tools">
+
+      <button id="menuToggle"
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir ferramentas"
+        aria-expanded="false">
+        +
+      </button>
+
+      <div id="menuPanel" class="menu-panel" hidden>
+
+        <div class="menu-heading">
+          <span>ADD TO YOUR SPACE</span>
+          <button id="closeMenu" type="button"
+            aria-label="Fechar menu">×</button>
+        </div>
+
+        <nav class="menu-categories"
+          aria-label="Categorias">
+
+          <button type="button"
+            class="category-btn"
+            data-category="objects">
+            objects
+          </button>
+
+          <button type="button"
+            class="category-btn"
+            data-category="plants">
+            plants
+          </button>
+
+          <button type="button"
+            class="category-btn"
+            data-category="wallpaper">
+            wallpaper
+          </button>
+
+        </nav>
+
+        <div id="collectionPanel"
+          class="collection-panel">
+
+          <p id="collectionMessage">
+            select a category.
+          </p>
+
+          <div id="collectionGrid"
+            class="collection-grid"></div>
+
+          <div id="importActions"
+            class="import-actions" hidden>
+
+            <button id="uploadBtn" type="button">
+              + add image
+            </button>
+
+            <button id="cameraBtn" type="button">
+              + take photo
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FERRAMENTAS DO OBJETO SELECIONADO -->
+
+    <div id="objectToolbar"
+      class="object-toolbar" hidden>
+
+      <button id="smallerBtn"
+        type="button"
+        aria-label="Diminuir">−</button>
+
+      <button id="biggerBtn"
+        type="button"
+        aria-label="Aumentar">+</button>
+
+      <button id="rotateBtn"
+        type="button"
+        aria-label="Rodar">↻</button>
+
+      <button id="deleteBtn"
+        type="button"
+        aria-label="Eliminar">×</button>
+
+    </div>
+
+    <!-- ETIQUETA TRANSPARENTE -->
+
+    <div id="objectInfo"
+      class="object-info" hidden>
+
+      <div class="info-top">
+        <span>PERSONAL ARCHIVE / 001</span>
+
+        <button id="closeInfo"
+          type="button"
+          aria-label="Fechar informação">×</button>
+      </div>
+
+      <div class="info-title">
+        <h2 id="infoName">OBJECT NAME</h2>
+      </div>
+
+      <div class="info-row">
+        <span>TYPE</span>
+        <span id="infoType">OBJECT</span>
+      </div>
+
+      <div class="info-row">
+        <span>DETAILS</span>
+        <span id="infoDetails">PERSONAL COLLECTION</span>
+      </div>
+
+    </div>
+
+    <!-- CONTROLOS GERAIS -->
+
+    <div class="canvas-controls">
+
+      <button id="resetBtn" type="button">
+        RESET SPACE ↺
+      </button>
+
+      <button id="fullscreenBtn" type="button">
+        EXPAND ↗
+      </button>
+
+    </div>
 
   </main>
 
-  <footer>
-    <span>INHABIT © 2026</span>
-    <span>collect • arrange • grow</span>
-  </footer>
+  <!-- IMPORTAÇÃO DE IMAGENS -->
+
+  <input
+    type="file"
+    id="imageInput"
+    accept="image/*"
+    hidden
+  >
+
+  <input
+    type="file"
+    id="cameraInput"
+    accept="image/*"
+    capture="environment"
+    hidden
+  >
 
 </body>
 </html>
