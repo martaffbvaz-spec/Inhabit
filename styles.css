@@ -1,5 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Caveat:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
   --paper: #f5f0e7;
@@ -323,5 +324,65 @@ footer {
   footer {
     padding: 18px 14px;
     font-size: 10px;
+  }
+}
+
+/* INHABIT — TYPOGRAPHIC IDENTITY */
+
+.logo,
+h1,
+.sidebar h2 {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
+
+.logo {
+  font-size: 35px;
+  font-style: italic;
+}
+
+h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.05;
+}
+
+.sidebar h2 {
+  font-size: 27px;
+  line-height: 1.2;
+}
+
+.eyebrow,
+.sidebar h3,
+footer,
+#saveBtn,
+#resetBtn {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.canvas-hint,
+.sidebar-note,
+.topbar p {
+  font-family: "Caveat", cursive;
+  font-size: 21px;
+}
+
+@media (max-width: 700px) {
+  .logo {
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: 43px;
+  }
+
+  .sidebar h2 {
+    font-size: 25px;
   }
 }
