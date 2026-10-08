@@ -10,7 +10,13 @@
   <title>INHABIT — Your personal space</title>
 
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <script>
+  alert("O JavaScript está a funcionar!");
+  document.addEventListener("click", function () {
+    document.body.classList.add("entered");
+  });
+</script>
+<script src="script.js" defer></script>
 </head>
 
 <body>
