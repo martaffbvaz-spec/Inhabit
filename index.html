@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INHABIT — Your little world</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="#">inhabit<span>✳</span></a>
+    <p>make a little world of your own</p>
+    <button id="saveBtn">save space ↗</button>
+  </header>
+
+  <main class="workspace">
+
+    <aside class="sidebar">
+      <h2>add something ✳</h2>
+      <p class="sidebar-note">a little bit of everything</p>
+
+      <button class="add-btn" data-type="plant">✿ plant</button>
+      <button class="add-btn" data-type="chair">▧ chair</button>
+      <button class="add-btn" data-type="lamp">✳ lamp</button>
+      <button class="add-btn" data-type="art">▣ artwork</button>
+
+      <hr>
+
+      <h3>your collection</h3>
+      <p class="sidebar-note">more objects coming soon...</p>
+    </aside>
+
+    <section class="editor">
+      <div class="editor-heading">
+        <div>
+          <span class="eyebrow">YOUR PERSONAL COLLAGE</span>
+          <h1>my little space.</h1>
+        </div>
+        <button id="resetBtn">start again ↺</button>
+      </div>
+
+      <div id="canvas" class="canvas">
+        <span class="canvas-hint">a blank space, just for you ♡</span>
+      </div>
+
+      <div class="toolbar">
+        <span>select an object to edit it</span>
+        <div>
+          <button id="smallerBtn">−</button>
+          <button id="biggerBtn">＋</button>
+          <button id="rotateBtn">↻</button>
+          <button id="deleteBtn">✕</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>INHABIT © 2026</span>
+    <span>collect • arrange • grow</span>
+  </footer>
+
+</body>
+</html>
