@@ -247,20 +247,80 @@ cameraInput.addEventListener("change", event => {
   event.target.value = "";
 });
 
-function handleImageUpload(file) {
+
+/* ========================================
+   IMPORTAR E RECORTAR IMAGENS
+======================================== */
+
+async function handleImageUpload(file) {
   if (!file || !file.type.startsWith("image/")) {
     return;
   }
 
+  const category = activeCategory || "objects";
+
+  const name = file.name
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]/g, " ");
+
+  const originalMessage = collectionMessage.textContent;
+
+  collectionMessage.textContent =
+    "preparing your image...";
+
+  let imageFile = file;
+
+  // Remover o fundo de objetos e plantas.
+  // Wallpaper mantém a fotografia original.
+
+  if (category !== "wallpaper") {
+    collectionMessage.textContent =
+      "removing background... this may take a moment.";
+
+    try {
+      if (typeof window.removeImageBackground !== "function") {
+        throw new Error(
+          "Background removal library is not ready."
+        );
+      }
+
+      const result = await window.removeImageBackground(
+        file,
+        {
+          output: {
+            format: "image/png",
+            quality: 1
+          }
+        }
+      );
+
+      imageFile = result;
+
+    } catch (error) {
+      console.warn(
+        "Background removal failed:",
+        error
+      );
+
+      const useOriginal = confirm(
+        "Não foi possível remover o fundo " +
+        "automaticamente. Queres utilizar " +
+        "a fotografia original?"
+      );
+
+      if (!useOriginal) {
+        collectionMessage.textContent = originalMessage;
+        return;
+      }
+    }
+  }
+
+  collectionMessage.textContent =
+    "adding to your collection...";
+
   const reader = new FileReader();
 
   reader.onload = () => {
-    const category = activeCategory || "objects";
-
-    const name = file.name
-      .replace(/\.[^.]+$/, "")
-      .replace(/[-_]/g, " ");
-
     const item = {
       id: nextItemId++,
       category,
@@ -273,6 +333,8 @@ function handleImageUpload(file) {
 
     if (!saveData()) {
       collection.pop();
+      collectionMessage.textContent =
+        "Could not save image.";
       return;
     }
 
@@ -283,8 +345,14 @@ function handleImageUpload(file) {
     }
   };
 
-  reader.readAsDataURL(file);
+  reader.onerror = () => {
+    collectionMessage.textContent =
+      "Could not read image.";
+  };
+
+  reader.readAsDataURL(imageFile);
 }
+
 
 /* ========================================
    WALLPAPER
