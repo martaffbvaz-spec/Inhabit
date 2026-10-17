@@ -283,17 +283,16 @@ async function handleImageUpload(file) {
           "Background removal library is not ready."
         );
       }
-
-      const result = await window.removeImageBackground(
-        file,
-        {
-          output: {
-            format: "image/png",
-            quality: 1
-          }
-        }
-      );
-
+const result = await window.removeImageBackground(
+  file,
+  {
+    device: "cpu",
+    output: {
+      format: "image/png",
+      quality: 1
+    }
+  }
+);
       imageFile = result;
 
     } catch (error) {
