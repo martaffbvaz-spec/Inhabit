@@ -600,7 +600,7 @@ const result = await window.removeImageBackground(
   };
 
   reader.readAsDataURL(imageFile);
-}
+
 
 
 /* ========================================
@@ -1052,3 +1052,4 @@ async function initializeInhabit() {
 }
 
 initializeInhabit();
+
