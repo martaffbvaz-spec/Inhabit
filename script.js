@@ -24,6 +24,120 @@ const objectInfo = document.getElementById("objectInfo");
 const STORAGE_SPACE = "inhabit-space-v2";
 const STORAGE_COLLECTION = "inhabit-collection-v2";
 
+/* ========================================
+   INHABIT — IMAGE DATABASE
+======================================== */
+
+const IMAGE_DB_NAME = "inhabit-images";
+const IMAGE_DB_VERSION = 1;
+const IMAGE_STORE = "images";
+
+function openImageDatabase() {
+  return new Promise((resolve, reject) => {
+    if (!("indexedDB" in window)) {
+      reject(new Error(
+        "IndexedDB is not supported."
+      ));
+      return;
+    }
+
+    const request = indexedDB.open(
+      IMAGE_DB_NAME,
+      IMAGE_DB_VERSION
+    );
+
+    request.onupgradeneeded = () => {
+      const database = request.result;
+
+      if (!database.objectStoreNames.contains(IMAGE_STORE)) {
+        database.createObjectStore(IMAGE_STORE);
+      }
+    };
+
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+
+    request.onerror = () => {
+      reject(
+        request.error ||
+        new Error("Could not open image database.")
+      );
+    };
+  });
+}
+
+async function saveImageToDatabase(id, imageBlob) {
+  const database = await openImageDatabase();
+
+  return new Promise((resolve, reject) => {
+    const transaction = database.transaction(
+      IMAGE_STORE,
+      "readwrite"
+    );
+
+    const store = transaction.objectStore(IMAGE_STORE);
+
+    store.put(imageBlob, String(id));
+
+    transaction.oncomplete = () => {
+      database.close();
+      resolve();
+    };
+
+    transaction.onerror = () => {
+      const error = transaction.error;
+      database.close();
+
+      reject(
+        error ||
+        new Error("Could not save image.")
+      );
+    };
+
+    transaction.onabort = () => {
+      const error = transaction.error;
+      database.close();
+
+      reject(
+        error ||
+        new Error("Image saving was cancelled.")
+      );
+    };
+  });
+}
+
+async function getImageFromDatabase(id) {
+  const database = await openImageDatabase();
+
+  return new Promise((resolve, reject) => {
+    const transaction = database.transaction(
+      IMAGE_STORE,
+      "readonly"
+    );
+
+    const request = transaction
+      .objectStore(IMAGE_STORE)
+      .get(String(id));
+
+    request.onsuccess = () => {
+      database.close();
+      resolve(request.result || null);
+    };
+
+    request.onerror = () => {
+      const error = request.error;
+      database.close();
+
+      reject(
+        error ||
+        new Error("Could not load image.")
+      );
+    };
+  });
+}
+
+
 let objects = [];
 let collection = [];
 let selectedId = null;
