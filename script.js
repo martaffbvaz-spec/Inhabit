@@ -179,28 +179,49 @@ function readStorage(key, fallback) {
   }
 }
 
+
 function saveData() {
   try {
+    // Guardar posições e tamanhos dos objetos.
     localStorage.setItem(
       STORAGE_SPACE,
       JSON.stringify(objects)
     );
 
+    // Guardar os dados da coleção sem os
+    // endereços temporários das imagens novas.
+    const collectionToSave = collection.map(item => {
+      const savedItem = { ...item };
+
+      if (
+        typeof savedItem.src === "string" &&
+        savedItem.src.startsWith("blob:")
+      ) {
+        delete savedItem.src;
+      }
+
+      return savedItem;
+    });
+
     localStorage.setItem(
       STORAGE_COLLECTION,
-      JSON.stringify(collection)
+      JSON.stringify(collectionToSave)
     );
 
     return true;
+
   } catch (error) {
-    console.warn("Could not save data:", error);
+    console.error("Could not save data:", error);
+
     alert(
-      "Não foi possível guardar tudo. " +
+      "Não foi possível guardar os dados. " +
       "O armazenamento do navegador pode estar cheio."
     );
+
     return false;
   }
 }
+
 
 function loadData() {
   const savedObjects = readStorage(STORAGE_SPACE, []);
@@ -366,10 +387,125 @@ cameraInput.addEventListener("change", event => {
    IMPORTAR E RECORTAR IMAGENS
 ======================================== */
 
+
+/* ========================================
+   IMPORTAR E GUARDAR IMAGENS
+======================================== */
+
 async function handleImageUpload(file) {
   if (!file || !file.type.startsWith("image/")) {
     return;
   }
+
+  const category = activeCategory || "objects";
+
+  const name = file.name
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]/g, " ");
+
+  let imageFile = file;
+
+  collectionMessage.textContent =
+    "preparing your image...";
+
+  // Remover o fundo apenas de objetos e plantas.
+
+  if (category !== "wallpaper") {
+    collectionMessage.textContent =
+      "removing background...";
+
+    try {
+      if (typeof window.removeImageBackground !== "function") {
+        throw new Error(
+          "Background removal library is not ready."
+        );
+      }
+
+      imageFile = await window.removeImageBackground(
+        file,
+        {
+          device: "cpu",
+          output: {
+            format: "image/png",
+            quality: 1
+          }
+        }
+      );
+
+    } catch (error) {
+      console.error(
+        "Background removal failed:",
+        error
+      );
+
+      const useOriginal = confirm(
+        "Não foi possível remover o fundo. " +
+        "Queres utilizar a fotografia original?"
+      );
+
+      if (!useOriginal) {
+        collectionMessage.textContent =
+          "image import cancelled.";
+        return;
+      }
+
+      imageFile = file;
+    }
+  }
+
+  collectionMessage.textContent =
+    "saving to your collection...";
+
+  const item = {
+    id: nextItemId,
+    category,
+    name: name || "Untitled object",
+    details: "Personal collection"
+  };
+
+  try {
+    // Guardar a imagem no IndexedDB.
+    await saveImageToDatabase(item.id, imageFile);
+
+    // Criar um endereço temporário para mostrar a imagem.
+    item.src = URL.createObjectURL(imageFile);
+
+    // Guardar apenas os metadados no localStorage.
+    const previousCollection = collection;
+    collection = [...collection, item];
+
+    if (!saveData()) {
+      collection = previousCollection;
+      URL.revokeObjectURL(item.src);
+
+      collectionMessage.textContent =
+        "could not save collection.";
+      return;
+    }
+
+    nextItemId++;
+
+    renderCollection();
+
+    if (category !== "wallpaper") {
+      addObject(item);
+    }
+
+  } catch (error) {
+    console.error(
+      "Image storage failed:",
+      error
+    );
+
+    collectionMessage.textContent =
+      "could not save image.";
+
+    alert(
+      "Não foi possível guardar a imagem " +
+      "no navegador."
+    );
+  }
+}
 
   const category = activeCategory || "objects";
 
@@ -885,7 +1021,34 @@ document.getElementById(
    INICIAR
 ======================================== */
 
-loadData();
-loadWallpaper();
-renderObjects();
-renderCollection();
+async function initializeInhabit() {
+  loadData();
+
+  for (const item of collection) {
+    // As imagens antigas continuam a usar
+    // os dados guardados anteriormente.
+    if (item.src) continue;
+
+    try {
+      const imageBlob = await getImageFromDatabase(
+        item.id
+      );
+
+      if (imageBlob) {
+        item.src = URL.createObjectURL(imageBlob);
+      }
+    } catch (error) {
+      console.warn(
+        "Could not restore image:",
+        item.id,
+        error
+      );
+    }
+  }
+
+  loadWallpaper();
+  renderObjects();
+  renderCollection();
+}
+
+initializeInhabit();
