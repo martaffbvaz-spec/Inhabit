@@ -834,6 +834,14 @@ function editSelected(action) {
     obj.flipX = !obj.flipX;
   }
 
+if (action === "skewLeft") {
+  obj.skewX = Math.max(-45, (obj.skewX || 0) - 5);
+}
+
+if (action === "skewRight") {
+  obj.skewX = Math.min(45, (obj.skewX || 0) + 5);
+}
+
   if (action === "delete") {
     objects = objects.filter(
       entry => entry.id !== selectedId
