@@ -1265,3 +1265,15 @@ body.show-editor {
   min-height: 140vh;
   overflow: visible;
 }
+
+/* HOME — COMPOSIÇÃO MAIS COMPACTA */
+
+.landing-hero {
+  min-height: 140vh;
+}
+
+.landing-collage {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: visible;
+}
