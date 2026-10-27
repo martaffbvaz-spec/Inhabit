@@ -587,9 +587,9 @@ function renderObjects() {
 
     element.style.left = obj.x + "px";
     element.style.top = obj.y + "px";
+element.style.transform =
+  `rotate(${obj.rotation}deg) scale(${obj.flipX === true ? -obj.scale : obj.scale}, ${obj.scale})`;
 
-    element.style.transform =
-      `scale(${obj.scale}) rotate(${obj.rotation}deg)`;
 
     const image = document.createElement("img");
     image.src = item.src;
