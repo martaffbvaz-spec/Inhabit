@@ -1028,3 +1028,40 @@ body:has(.landing-page) > .workspace {
     gap: 15px;
   }
 }
+
+/* =====================================
+   INHABIT — SEPARAÇÃO DAS PÁGINAS
+   ===================================== */
+
+/* Quando abrimos o site, mostramos a landing */
+#landingPage {
+  display: block;
+}
+
+/* O editor começa escondido */
+#editorPage {
+  display: none;
+}
+
+/* Quando entramos no nosso espaço */
+body.show-editor #landingPage {
+  display: none;
+}
+
+body.show-editor #editorPage {
+  display: block;
+}
+
+/* Scroll na página inicial */
+body:not(.show-editor) {
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Editor ocupa o ecrã */
+body.show-editor {
+  height: 100dvh;
+  overflow: hidden;
+}
