@@ -589,8 +589,10 @@ function renderObjects() {
     element.style.top = obj.y + "px";
 
 
+
 element.style.transform =
-  `rotate(${obj.rotation}deg) scaleX(${obj.flipX ? -1 : 1}) scale(${obj.scale}) skewX(${obj.skewX || 0}deg)`;
+  `rotate(${obj.rotation}deg) scaleX(${obj.flipX ? -1 : 1}) scale(${obj.scale}) skewY(${obj.skewX || 0}deg)`;
+
 
 
     const image = document.createElement("img");
