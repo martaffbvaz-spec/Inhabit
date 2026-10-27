@@ -582,10 +582,10 @@ body.entered .site-header {
     font-size: 23px;
   }
 
-  .collage-object {
-    width: 145px;
-    height: 145px;
-  }
+.collage-object {
+  width: 180px;
+  height: 180px;
+}
 
   .object-info {
     width: min(255px, 76vw);
@@ -1072,11 +1072,20 @@ body.show-editor {
   cursor: pointer;
 }
 
-/* Garantir que o logótipo pode ser clicado */
+
+/* O cabeçalho não bloqueia o editor */
 
 #editorPage .site-header {
+  pointer-events: none;
+}
+
+/* Apenas o logótipo e o botão SAVE recebem cliques */
+
+#editorPage #logo,
+#editorPage .header-actions {
   pointer-events: auto;
 }
+
 
 #editorPage #logo {
   position: relative;
