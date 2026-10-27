@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 
@@ -7,106 +8,210 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>INHABIT — Your personal space</title>
+  <title>INHABIT — A little world of your own</title>
 
   <link rel="stylesheet" href="styles.css">
-  
-<script type="module">
-  import { removeBackground } from
-    "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
 
-  window.removeImageBackground = removeBackground;
-</script>
-  <script src="script.js?v=2" defer></script>
+  <script type="module">
+    import { removeBackground } from
+      "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
+
+    window.removeImageBackground = removeBackground;
+  </script>
+
+  <script src="script.js?v=3" defer></script>
 </head>
 
 <body>
 
-  <!-- ENTRADA / LOGÓTIPO -->
+  <!-- NOVA PÁGINA INICIAL -->
 
-  <header class="site-header">
-    <h1 id="logo" class="logo">INHABIT</h1>
+  <div id="landingPage" class="landing-page">
 
-    <div class="header-actions">
-      <span>YOUR PERSONAL SPACE / 001</span>
-      <button id="saveBtn" type="button">SAVE ↗</button>
-    </div>
-  </header>
+    <header class="landing-header">
+      <a href="#home" class="landing-brand">INHABIT</a>
 
-  <!-- TELA PRINCIPAL -->
+      <nav class="landing-nav" aria-label="Navegação principal">
+        <a href="#about">ABOUT</a>
+        <a href="#collectionIntro">COLLECTION</a>
+        <button id="navMySpace" type="button">MY SPACE</button>
+      </nav>
+    </header>
 
-  <main id="workspace" class="workspace">
+    <main>
 
-    <section id="canvas" class="canvas"
-      aria-label="O teu espaço de criação">
+      <!-- COMPOSIÇÃO EDITORIAL -->
 
-      <!-- Os objetos serão inseridos aqui pelo JavaScript -->
+      <section id="home" class="landing-hero">
 
-    </section>
+        <div class="landing-collage">
 
-    <!-- MENU FLUTUANTE -->
+          <div class="landing-title" aria-label="INHABIT">
+            <span>I</span>
+            <span>N</span>
+            <span>H</span>
+            <span>A</span>
+            <span>B</span>
+            <span>I</span>
+            <span>T</span>
+          </div>
 
-    <div class="floating-tools">
-
-      <button id="menuToggle"
-        class="menu-toggle"
-        type="button"
-        aria-label="Abrir ferramentas"
-        aria-expanded="false">
-        +
-      </button>
-
-      <div id="menuPanel" class="menu-panel" hidden>
-
-        <div class="menu-heading">
-          <span>ADD TO YOUR SPACE</span>
-          <button id="closeMenu" type="button"
-            aria-label="Fechar menu">×</button>
-        </div>
-
-        <nav class="menu-categories"
-          aria-label="Categorias">
-
-          <button type="button"
-            class="category-btn"
-            data-category="objects">
-            objects
-          </button>
-
-          <button type="button"
-            class="category-btn"
-            data-category="plants">
-            plants
-          </button>
-
-          <button type="button"
-            class="category-btn"
-            data-category="wallpaper">
-            wallpaper
-          </button>
-
-        </nav>
-
-        <div id="collectionPanel"
-          class="collection-panel">
-
-          <p id="collectionMessage">
-            select a category.
+          <p class="landing-subtitle">
+            A little world<br>of your own.
           </p>
 
-          <div id="collectionGrid"
-            class="collection-grid"></div>
+          <!-- As imagens serão acrescentadas aqui
+               depois de prepararmos os recortes. -->
 
-          <div id="importActions"
-            class="import-actions" hidden>
+          <div id="landingObjects" class="landing-objects"></div>
 
-            <button id="uploadBtn" type="button">
-              + add image
+          <span class="landing-note note-left">
+            COLLECT.<br>
+            ARRANGE.<br>
+            IMAGINE.
+          </span>
+
+          <span class="landing-note note-right">
+            PLANTS / OBJECTS / SPACES / IDEAS
+          </span>
+
+          <a href="#about" class="scroll-prompt">
+            SCROLL TO EXPLORE ↓
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- APRESENTAÇÃO DO PROJETO -->
+
+      <section id="about" class="landing-about">
+
+        <div class="section-index">01 / ABOUT</div>
+
+        <h2>More than a room.</h2>
+
+        <p>
+          INHABIT is a digital sketchbook to collect objects,
+          imagine interiors and document the spaces that make
+          up your world — real or imagined.
+        </p>
+
+      </section>
+
+      <!-- COLEÇÃO / CONVITE -->
+
+      <section id="collectionIntro" class="landing-invite">
+
+        <div class="section-index">02 / MAKE IT YOURS</div>
+
+        <h2>Your objects. Your little world.</h2>
+
+        <p>
+          Collect the things you love and arrange them
+          into a space that feels like yours.
+        </p>
+
+        <div class="landing-actions">
+          <button id="createSpaceBtn" type="button">
+            CREATE SPACE ↗
+          </button>
+
+          <button id="enterSpaceBtn" type="button">
+            ENTER MY SPACE ↗
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- EDITOR ORIGINAL: MANTIDO -->
+
+  <div id="editorPage" class="editor-page">
+
+    <header class="site-header">
+      <h1 id="logo" class="logo">INHABIT</h1>
+
+      <div class="header-actions">
+        <span>YOUR PERSONAL SPACE / 001</span>
+        <button id="saveBtn" type="button">SAVE ↗</button>
+      </div>
+    </header>
+
+    <main id="workspace" class="workspace">
+
+      <section id="canvas" class="canvas"
+        aria-label="O teu espaço de criação">
+      </section>
+
+      <!-- MENU FLUTUANTE -->
+
+      <div class="floating-tools">
+
+        <button id="menuToggle"
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir ferramentas"
+          aria-expanded="false">
+          +
+        </button>
+
+        <div id="menuPanel" class="menu-panel" hidden>
+
+          <div class="menu-heading">
+            <span>ADD TO YOUR SPACE</span>
+
+            <button id="closeMenu" type="button"
+              aria-label="Fechar menu">×</button>
+          </div>
+
+          <nav class="menu-categories"
+            aria-label="Categorias">
+
+            <button type="button"
+              class="category-btn"
+              data-category="objects">
+              objects
             </button>
 
-            <button id="cameraBtn" type="button">
-              + take photo
+            <button type="button"
+              class="category-btn"
+              data-category="plants">
+              plants
             </button>
+
+            <button type="button"
+              class="category-btn"
+              data-category="wallpaper">
+              wallpaper
+            </button>
+
+          </nav>
+
+          <div id="collectionPanel" class="collection-panel">
+
+            <p id="collectionMessage">
+              select a category.
+            </p>
+
+            <div id="collectionGrid"
+              class="collection-grid"></div>
+
+            <div id="importActions"
+              class="import-actions" hidden>
+
+              <button id="uploadBtn" type="button">
+                + add image
+              </button>
+
+              <button id="cameraBtn" type="button">
+                + take photo
+              </button>
+
+            </div>
 
           </div>
 
@@ -114,75 +219,75 @@
 
       </div>
 
-    </div>
+      <!-- FERRAMENTAS DOS OBJETOS -->
 
-    <!-- FERRAMENTAS DO OBJETO SELECIONADO -->
+      <div id="objectToolbar"
+        class="object-toolbar" hidden>
 
-    <div id="objectToolbar"
-      class="object-toolbar" hidden>
-
-      <button id="smallerBtn"
-        type="button"
-        aria-label="Diminuir">−</button>
-
-      <button id="biggerBtn"
-        type="button"
-        aria-label="Aumentar">+</button>
-
-      <button id="rotateBtn"
-        type="button"
-        aria-label="Rodar">↻</button>
-
-      <button id="deleteBtn"
-        type="button"
-        aria-label="Eliminar">×</button>
-
-    </div>
-
-    <!-- ETIQUETA TRANSPARENTE -->
-
-    <div id="objectInfo"
-      class="object-info" hidden>
-
-      <div class="info-top">
-        <span>PERSONAL ARCHIVE / 001</span>
-
-        <button id="closeInfo"
+        <button id="smallerBtn"
           type="button"
-          aria-label="Fechar informação">×</button>
+          aria-label="Diminuir">−</button>
+
+        <button id="biggerBtn"
+          type="button"
+          aria-label="Aumentar">+</button>
+
+        <button id="rotateBtn"
+          type="button"
+          aria-label="Rodar">↻</button>
+
+        <button id="deleteBtn"
+          type="button"
+          aria-label="Eliminar">×</button>
+
       </div>
 
-      <div class="info-title">
-        <h2 id="infoName">OBJECT NAME</h2>
+      <!-- ETIQUETA TRANSPARENTE -->
+
+      <div id="objectInfo"
+        class="object-info" hidden>
+
+        <div class="info-top">
+          <span>PERSONAL ARCHIVE / 001</span>
+
+          <button id="closeInfo"
+            type="button"
+            aria-label="Fechar informação">×</button>
+        </div>
+
+        <div class="info-title">
+          <h2 id="infoName">OBJECT NAME</h2>
+        </div>
+
+        <div class="info-row">
+          <span>TYPE</span>
+          <span id="infoType">OBJECT</span>
+        </div>
+
+        <div class="info-row">
+          <span>DETAILS</span>
+          <span id="infoDetails">PERSONAL COLLECTION</span>
+        </div>
+
       </div>
 
-      <div class="info-row">
-        <span>TYPE</span>
-        <span id="infoType">OBJECT</span>
+      <!-- CONTROLOS GERAIS -->
+
+      <div class="canvas-controls">
+
+        <button id="resetBtn" type="button">
+          RESET SPACE ↺
+        </button>
+
+        <button id="fullscreenBtn" type="button">
+          EXPAND ↗
+        </button>
+
       </div>
 
-      <div class="info-row">
-        <span>DETAILS</span>
-        <span id="infoDetails">PERSONAL COLLECTION</span>
-      </div>
+    </main>
 
-    </div>
-
-    <!-- CONTROLOS GERAIS -->
-
-    <div class="canvas-controls">
-
-      <button id="resetBtn" type="button">
-        RESET SPACE ↺
-      </button>
-
-      <button id="fullscreenBtn" type="button">
-        EXPAND ↗
-      </button>
-
-    </div>
-
-  </main>
+  </div>
 
   <!-- IMPORTAÇÃO DE IMAGENS -->
 
