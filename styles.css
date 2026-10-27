@@ -1252,3 +1252,16 @@ body.show-editor {
   scale: 1.75;
 }
 
+
+/* HOME — COLAGEM VERTICAL */
+
+.landing-hero {
+  height: auto;
+  min-height: 140vh;
+  overflow: visible;
+}
+
+.landing-collage {
+  min-height: 140vh;
+  overflow: visible;
+}
