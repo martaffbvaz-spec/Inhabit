@@ -1098,3 +1098,144 @@ body.show-editor {
 #editorPage #objectInfo {
   display: none !important;
 }
+
+/* HOME — COLAGEM DE OBJETOS */
+
+.landing-collage {
+  position: relative;
+  isolation: isolate;
+}
+
+.landing-objects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.landing-object {
+  position: absolute;
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: auto;
+  transform: rotate(var(--angle, 0deg));
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+
+.landing-object:hover {
+  transform:
+    translateY(-12px)
+    rotate(calc(var(--angle, 0deg) + 7deg))
+    scale(1.1);
+  z-index: 10;
+}
+
+/* OBJETOS — POSIÇÕES INICIAIS */
+
+.object-canon {
+  width: 155px;
+  top: 18%;
+  left: 7%;
+  --angle: -12deg;
+}
+
+.object-cartas {
+  width: 100px;
+  top: 11%;
+  left: 34%;
+  --angle: 15deg;
+}
+
+.object-designer {
+  width: 115px;
+  top: 77%;
+  left: 55%;
+  --angle: -9deg;
+}
+
+.object-dinossauro {
+  width: 65px;
+  top: 14%;
+  right: 13%;
+  --angle: 10deg;
+}
+
+.object-figo {
+  width: 90px;
+  top: 66%;
+  left: 18%;
+  --angle: -15deg;
+}
+
+.object-folha {
+  width: 130px;
+  top: 34%;
+  right: 5%;
+  --angle: 18deg;
+}
+
+.object-idesign {
+  width: 90px;
+  top: 50%;
+  left: 3%;
+  --angle: -12deg;
+}
+
+.object-leica {
+  width: 145px;
+  top: 68%;
+  right: 7%;
+  --angle: 8deg;
+}
+
+.object-maca {
+  width: 75px;
+  top: 8%;
+  right: 30%;
+  --angle: -8deg;
+}
+
+.object-matcha {
+  width: 105px;
+  top: 76%;
+  left: 34%;
+  --angle: 12deg;
+}
+
+.object-orquidea {
+  width: 115px;
+  top: 7%;
+  left: 53%;
+  --angle: -14deg;
+}
+
+.object-papel {
+  width: 100px;
+  top: 48%;
+  right: 18%;
+  --angle: -10deg;
+}
+
+.object-phone {
+  width: 155px;
+  top: 48%;
+  left: 11%;
+  --angle: 13deg;
+}
+
+.object-rolo {
+  width: 90px;
+  top: 26%;
+  right: 23%;
+  --angle: -18deg;
+}
+
+.object-tesoura {
+  width: 120px;
+  top: 83%;
+  right: 23%;
+  --angle: 16deg;
+}
