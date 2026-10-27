@@ -974,3 +974,13 @@ document.getElementById("createSpaceBtn")
 
 document.getElementById("enterSpaceBtn")
   ?.addEventListener("click", enterMySpace);
+
+/* =====================================
+   VOLTAR À PÁGINA INICIAL
+   ===================================== */
+
+document.getElementById("logo")
+  ?.addEventListener("click", () => {
+    document.body.classList.remove("show-editor");
+    window.scrollTo(0, 0);
+  });

@@ -1065,3 +1065,9 @@ body.show-editor {
   height: 100dvh;
   overflow: hidden;
 }
+
+/* Logótipo clicável no editor */
+
+#editorPage .logo {
+  cursor: pointer;
+}
