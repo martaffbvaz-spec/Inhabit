@@ -961,10 +961,13 @@ initializeInhabit();
    INHABIT — NAVEGAÇÃO ENTRE PÁGINAS
    ===================================== */
 
+
 function enterMySpace() {
+  document.body.classList.add("entered");
   document.body.classList.add("show-editor");
   window.scrollTo(0, 0);
 }
+
 
 document.getElementById("navMySpace")
   ?.addEventListener("click", enterMySpace);
