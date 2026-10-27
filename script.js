@@ -589,17 +589,17 @@ function renderObjects() {
 const isMobile = window.innerWidth <= 700;
 
 const referenceWidth = 1200;
-const mobileScale = Math.min(
-  1,
-  canvas.clientWidth / referenceWidth
-);
 
-element.style.left =
-  (isMobile ? obj.x * mobileScale : obj.x) + "px";
+const mobileScale = isMobile
+  ? Math.min(1, canvas.clientWidth / referenceWidth)
+  : 1;
 
-element.style.top =
-  (isMobile ? obj.y * mobileScale : obj.y) + "px";
+element.style.left = (obj.x * mobileScale) + "px";
+element.style.top = (obj.y * mobileScale) + "px";
 
+element.style.width = (180 * mobileScale) + "px";
+element.style.height = (180 * mobileScale) + "px";
+js
     element.style.transform =
       `scale(${obj.scale}) rotate(${obj.rotation}deg)`;
 
