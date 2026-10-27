@@ -883,6 +883,16 @@ document.getElementById("flipBtn")
     editSelected("flip");
   });
 
+document.getElementById("skewLeftBtn")
+  .addEventListener("click", () => {
+    editSelected("skewLeft");
+  });
+
+document.getElementById("skewRightBtn")
+  .addEventListener("click", () => {
+    editSelected("skewRight");
+  });
+
 document.getElementById(
   "deleteBtn"
 ).addEventListener("click", () => {
