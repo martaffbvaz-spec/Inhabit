@@ -1301,3 +1301,40 @@ body.show-editor {
   max-width: 210px;
   text-align: right;
 }
+
+/* HOME — NAVEGAÇÃO SUPERIOR */
+
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 45px;
+}
+
+.landing-brand {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.landing-nav {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.landing-nav a,
+.landing-nav button {
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.landing-nav a:hover,
+.landing-nav button:hover,
+.landing-brand:hover {
+  opacity: 0.5;
+}
