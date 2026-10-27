@@ -973,3 +973,58 @@ body.entered .site-header {
     width: 100%;
   }
 }
+
+/* ==========================================
+   CORREÇÃO — LANDING PAGE
+   ========================================== */
+
+/* Permitir scroll na página inicial */
+
+html:has(.landing-page),
+body:has(.landing-page) {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Esconder temporariamente o editor antigo
+   enquanto estamos na página inicial */
+
+body:has(.landing-page) > .site-header,
+body:has(.landing-page) > .workspace {
+  display: none !important;
+}
+
+/* Garantir que a landing ocupa a largura certa */
+
+.landing-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* Evitar que a navegação se sobreponha */
+
+.landing-header {
+  width: 100%;
+  min-height: 75px;
+}
+
+.landing-nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Corrigir o comportamento no telemóvel */
+
+@media (max-width: 700px) {
+  .landing-header {
+    flex-wrap: wrap;
+  }
+
+  .landing-nav {
+    gap: 15px;
+  }
+}
