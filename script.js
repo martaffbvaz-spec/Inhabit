@@ -585,21 +585,9 @@ function renderObjects() {
     element.className = "collage-object";
     element.dataset.id = obj.id;
 
-    
-const isMobile = window.innerWidth <= 700;
+    element.style.left = obj.x + "px";
+    element.style.top = obj.y + "px";
 
-const referenceWidth = 1200;
-
-const mobileScale = isMobile
-  ? Math.min(1, canvas.clientWidth / referenceWidth)
-  : 1;
-
-element.style.left = (obj.x * mobileScale) + "px";
-element.style.top = (obj.y * mobileScale) + "px";
-
-element.style.width = (180 * mobileScale) + "px";
-element.style.height = (180 * mobileScale) + "px";
-js
     element.style.transform =
       `scale(${obj.scale}) rotate(${obj.rotation}deg)`;
 
