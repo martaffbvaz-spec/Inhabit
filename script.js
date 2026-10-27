@@ -833,6 +833,10 @@ function editSelected(action) {
       entry => entry.id !== selectedId
     );
 
+if (action === "flip") {
+  obj.flipX = !obj.flipX;
+}
+
     selectedId = null;
     objectInfo.hidden = true;
   }
@@ -858,6 +862,11 @@ document.getElementById(
 ).addEventListener("click", () => {
   editSelected("rotate");
 });
+
+document.getElementById("flipBtn")
+  .addEventListener("click", () => {
+    editSelected("flip");
+  });
 
 document.getElementById(
   "deleteBtn"
