@@ -1277,3 +1277,27 @@ body.show-editor {
   min-height: 100vh;
   overflow: visible;
 }
+
+/* HOME — FRASES LATERAIS */
+
+.landing-note {
+  position: absolute;
+  z-index: 5;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+}
+
+.landing-note.note-left {
+  left: 35px;
+  bottom: 90px;
+  right: auto;
+}
+
+.landing-note.note-right {
+  right: 35px;
+  bottom: 90px;
+  left: auto;
+  max-width: 210px;
+  text-align: right;
+}
