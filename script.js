@@ -587,8 +587,9 @@ function renderObjects() {
 
     element.style.left = obj.x + "px";
     element.style.top = obj.y + "px";
+
 element.style.transform =
-  `rotate(${obj.rotation}deg) scale(${obj.flipX === true ? -obj.scale : obj.scale}, ${obj.scale})`;
+  `rotate(${obj.rotation}deg) scaleX(${obj.flipX ? -1 : 1}) scale(${obj.scale})`;
 
 
     const image = document.createElement("img");
@@ -844,8 +845,40 @@ function editSelected(action) {
 
   renderObjects();
   saveData();
+
+
+  renderObjects();
+  saveData();
 }
 
+document.getElementById(
+  "biggerBtn"
+).addEventListener("click", () => {
+  editSelected("bigger");
+});
+
+document.getElementById(
+  "smallerBtn"
+).addEventListener("click", () => {
+  editSelected("smaller");
+});
+
+document.getElementById(
+  "rotateBtn"
+).addEventListener("click", () => {
+  editSelected("rotate");
+});
+
+document.getElementById("flipBtn")
+  .addEventListener("click", () => {
+    editSelected("flip");
+  });
+
+document.getElementById(
+  "deleteBtn"
+).addEventListener("click", () => {
+  editSelected("delete");
+});
 
 /* ========================================
    GUARDAR E RECOMEÇAR
