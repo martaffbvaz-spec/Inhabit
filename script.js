@@ -956,3 +956,21 @@ async function initializeInhabit() {
 
 initializeInhabit();
 
+
+/* =====================================
+   INHABIT — NAVEGAÇÃO ENTRE PÁGINAS
+   ===================================== */
+
+function enterMySpace() {
+  document.body.classList.add("show-editor");
+  window.scrollTo(0, 0);
+}
+
+document.getElementById("navMySpace")
+  ?.addEventListener("click", enterMySpace);
+
+document.getElementById("createSpaceBtn")
+  ?.addEventListener("click", enterMySpace);
+
+document.getElementById("enterSpaceBtn")
+  ?.addEventListener("click", enterMySpace);
