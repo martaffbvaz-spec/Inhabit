@@ -1071,3 +1071,16 @@ body.show-editor {
 #editorPage .logo {
   cursor: pointer;
 }
+
+/* Garantir que o logótipo pode ser clicado */
+
+#editorPage .site-header {
+  pointer-events: auto;
+}
+
+#editorPage #logo {
+  position: relative;
+  z-index: 1000;
+  pointer-events: auto;
+  cursor: pointer;
+}

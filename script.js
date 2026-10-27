@@ -975,12 +975,16 @@ document.getElementById("createSpaceBtn")
 document.getElementById("enterSpaceBtn")
   ?.addEventListener("click", enterMySpace);
 
-/* =====================================
-   VOLTAR À PÁGINA INICIAL
-   ===================================== */
+/* VOLTAR À PÁGINA INICIAL */
 
-document.getElementById("logo")
-  ?.addEventListener("click", () => {
+const homeLogo = document.getElementById("logo");
+
+if (homeLogo) {
+  homeLogo.addEventListener("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     document.body.classList.remove("show-editor");
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
+}
