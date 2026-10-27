@@ -1093,3 +1093,8 @@ body.show-editor {
   pointer-events: auto;
   cursor: pointer;
 }
+
+/* Esconder a etiqueta dos móveis no MY SPACE */
+#editorPage #objectInfo {
+  display: none !important;
+}
