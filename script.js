@@ -802,6 +802,7 @@ document.getElementById(
    EDITAR OBJETO
 ======================================== */
 
+
 function editSelected(action) {
   const obj = objects.find(
     entry => entry.id === selectedId
@@ -828,14 +829,14 @@ function editSelected(action) {
       (obj.rotation + 15) % 360;
   }
 
+  if (action === "flip") {
+    obj.flipX = !obj.flipX;
+  }
+
   if (action === "delete") {
     objects = objects.filter(
       entry => entry.id !== selectedId
     );
-
-if (action === "flip") {
-  obj.flipX = !obj.flipX;
-}
 
     selectedId = null;
     objectInfo.hidden = true;
@@ -845,34 +846,6 @@ if (action === "flip") {
   saveData();
 }
 
-document.getElementById(
-  "biggerBtn"
-).addEventListener("click", () => {
-  editSelected("bigger");
-});
-
-document.getElementById(
-  "smallerBtn"
-).addEventListener("click", () => {
-  editSelected("smaller");
-});
-
-document.getElementById(
-  "rotateBtn"
-).addEventListener("click", () => {
-  editSelected("rotate");
-});
-
-document.getElementById("flipBtn")
-  .addEventListener("click", () => {
-    editSelected("flip");
-  });
-
-document.getElementById(
-  "deleteBtn"
-).addEventListener("click", () => {
-  editSelected("delete");
-});
 
 /* ========================================
    GUARDAR E RECOMEÇAR
