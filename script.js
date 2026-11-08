@@ -1024,3 +1024,49 @@ if (homeLogo) {
     window.scrollTo({ top: 0, behavior: "instant" });
   });
 }
+
+/* =====================================
+   INHABIT — PÁGINA OBJECTS
+===================================== */
+
+const objectsPage = document.getElementById("objectsPage");
+const landingPage = document.getElementById("landingPage");
+
+// Criar ligação OBJECTS no menu da HOME
+const landingNav = document.querySelector(".landing-nav");
+
+if (landingNav && objectsPage) {
+  const objectsLink = document.createElement("a");
+  objectsLink.href = "#objects";
+  objectsLink.textContent = "OBJECTS";
+  landingNav.appendChild(objectsLink);
+
+  objectsLink.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    document.body.classList.remove("show-editor");
+    landingPage.style.display = "none";
+    objectsPage.hidden = false;
+
+    window.scrollTo(0, 0);
+  });
+}
+
+// Voltar da página OBJECTS para a HOME
+document.getElementById("objectsHome")
+  ?.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    objectsPage.hidden = true;
+    landingPage.style.display = "";
+
+    window.scrollTo(0, 0);
+  });
+
+// Entrar no MY SPACE a partir de OBJECTS
+document.getElementById("objectsMySpace")
+  ?.addEventListener("click", function() {
+    objectsPage.hidden = true;
+    landingPage.style.display = "";
+    enterMySpace();
+  });
