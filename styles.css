@@ -1338,3 +1338,91 @@ body.show-editor {
 .landing-brand:hover {
   opacity: 0.5;
 }
+
+/* =====================================
+   INHABIT — OBJECTS PAGE
+===================================== */
+
+.objects-page {
+  min-height: 100vh;
+  background: #fff;
+  color: #111;
+}
+
+/* CABEÇALHO */
+
+.objects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 28px 45px;
+  border-bottom: 1px solid #111;
+}
+
+.objects-header a {
+  color: #111;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.objects-header span {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.objects-header button {
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* COMPOSIÇÃO EDITORIAL */
+
+.objects-main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px 5%;
+}
+
+.objects-intro {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.objects-intro > span {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.objects-intro h1 {
+  margin: 30px 0 12px;
+
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: clamp(55px, 8vw, 135px);
+  font-weight: 400;
+  letter-spacing: -0.075em;
+  line-height: 0.95;
+}
+
+.objects-intro p {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ÁREA DOS OBJETOS */
+
+.objects-archive {
+  position: relative;
+  width: 100%;
+  min-height: 850px;
+  margin-top: 60px;
+}
