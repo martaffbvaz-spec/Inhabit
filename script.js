@@ -857,9 +857,6 @@ if (action === "skewRight") {
   renderObjects();
   saveData();
 
-
-  renderObjects();
-  saveData();
 }
 
 document.getElementById(
