@@ -1426,3 +1426,21 @@ body.show-editor {
   min-height: 850px;
   margin-top: 60px;
 }
+
+/* OBJECTS — ÁREA DE OBJETOS AMONTOADOS */
+
+.objects-archive {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  margin-top: 40px;
+  overflow: visible;
+}
+
+.objects-archive-item {
+  position: absolute;
+  bottom: 0;
+  transform-origin: center bottom;
+  cursor: pointer;
+  will-change: transform;
+}
