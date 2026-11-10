@@ -51,6 +51,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("authOverlay");
   const closeButton = document.getElementById("authClose");
 
+const switchButton = document.getElementById("authSwitch");
+const submitButton = document.getElementById("authSubmit");
+const title = document.querySelector(".auth-panel h2");
+
+let modoLogin = false;
+
+switchButton.addEventListener("click", () => {
+  modoLogin = !modoLogin;
+
+  if (modoLogin) {
+    title.textContent = "Welcome back.";
+    submitButton.textContent = "LOG IN ↗";
+    switchButton.textContent = "NEW HERE? CREATE ACCOUNT";
+  } else {
+    title.textContent = "Your space, wherever you are.";
+    submitButton.textContent = "CREATE ACCOUNT ↗";
+    switchButton.textContent =
+      "ALREADY HAVE AN ACCOUNT? LOG IN";
+  }
+});
+
   if (!overlay || !closeButton) return;
 
   // Permite abrir o formulário a partir de outros botões.
