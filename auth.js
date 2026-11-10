@@ -131,3 +131,36 @@ authForm.addEventListener("submit", async (event) => {
 });
 
 });
+
+/* INHABIT — ACCOUNT NA NAVEGAÇÃO */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".landing-nav");
+
+  if (!nav || document.getElementById("accountNavButton")) {
+    return;
+  }
+
+  const accountButton = document.createElement("button");
+
+  accountButton.id = "accountNavButton";
+  accountButton.type = "button";
+  accountButton.textContent = "ACCOUNT";
+
+  nav.appendChild(accountButton);
+
+  accountButton.addEventListener("click", async () => {
+    const { data, error } = await inhabitAuth.auth.getSession();
+
+    if (error) {
+      console.error("Erro ao verificar a sessão:", error.message);
+      return;
+    }
+
+    if (data.session) {
+      console.log("Conta iniciada:", data.session.user.email);
+    } else {
+      window.abrirContaInhabit();
+    }
+  });
+});
