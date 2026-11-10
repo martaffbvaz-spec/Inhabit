@@ -97,4 +97,37 @@ switchButton.addEventListener("click", () => {
       overlay.hidden = true;
     }
   });
+
+/* INHABIT — REGISTO E LOGIN */
+
+const authForm = document.getElementById("authForm");
+const authMessage = document.getElementById("authMessage");
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+
+authForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const email = authEmail.value.trim();
+  const password = authPassword.value;
+
+  authMessage.textContent = "PLEASE WAIT...";
+  submitButton.disabled = true;
+
+  try {
+    if (modoLogin) {
+      await entrarNaConta(email, password);
+      authMessage.textContent = "WELCOME BACK!";
+    } else {
+      await criarConta(email, password);
+      authMessage.textContent =
+        "CHECK YOUR EMAIL TO CONFIRM YOUR ACCOUNT.";
+    }
+  } catch (error) {
+    authMessage.textContent = error.message;
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
 });
