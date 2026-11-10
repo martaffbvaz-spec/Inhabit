@@ -406,5 +406,65 @@
   >
 
 
+<!-- INHABIT — CONTA PESSOAL -->
+<div id="authOverlay" class="auth-overlay" hidden>
+
+  <section class="auth-panel">
+
+    <button
+      id="authClose"
+      class="auth-close"
+      type="button"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <span class="auth-caption">
+      INHABIT / PERSONAL SPACE
+    </span>
+
+    <h2>Your space, wherever you are.</h2>
+
+    <p class="auth-description">
+      Create an account to keep your objects,
+      plants and personal space together.
+    </p>
+
+    <form id="authForm">
+
+      <label for="authEmail">EMAIL</label>
+      <input
+        id="authEmail"
+        type="email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="authPassword">PASSWORD</label>
+      <input
+        id="authPassword"
+        type="password"
+        autocomplete="current-password"
+        minlength="6"
+        required
+      >
+
+      <button id="authSubmit" type="submit">
+        CREATE ACCOUNT ↗
+      </button>
+
+    </form>
+
+    <button id="authSwitch" type="button">
+      ALREADY HAVE AN ACCOUNT? LOG IN
+    </button>
+
+    <p id="authMessage" role="status" aria-live="polite"></p>
+
+  </section>
+
+</div>
+
 </body>
 </html>
