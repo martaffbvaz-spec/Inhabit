@@ -157,10 +157,43 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (data.session) {
-      console.log("Conta iniciada:", data.session.user.email);
-    } else {
-      window.abrirContaInhabit();
+   
+if (data.session) {
+  const accountOverlay = document.getElementById("accountOverlay");
+  const accountEmail = document.getElementById("accountEmail");
+
+  if (accountOverlay && accountEmail) {
+    accountEmail.textContent = data.session.user.email;
+    accountOverlay.hidden = false;
+  }
+} else {
+  window.abrirContaInhabit();
+}
+
+/* INHABIT — FECHAR DEFINIÇÕES DA CONTA */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const accountOverlay = document.getElementById("accountOverlay");
+  const accountClose = document.getElementById("accountClose");
+
+  if (!accountOverlay || !accountClose) return;
+
+  accountClose.addEventListener("click", () => {
+    accountOverlay.hidden = true;
+  });
+
+  accountOverlay.addEventListener("click", (event) => {
+    if (event.target === accountOverlay) {
+      accountOverlay.hidden = true;
     }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      accountOverlay.hidden = true;
+    }
+  });
+});
+
   });
 });
