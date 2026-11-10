@@ -200,7 +200,36 @@ document.addEventListener("keydown", (event) => {
     }
   }
 });
+});
 
+/* INHABIT — TERMINAR SESSÃO */
 
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutButton = document.getElementById("accountLogout");
+  const accountOverlay = document.getElementById("accountOverlay");
+  const accountMessage = document.getElementById("accountMessage");
+
+  if (!logoutButton || !accountOverlay) return;
+
+  logoutButton.addEventListener("click", async () => {
+    logoutButton.disabled = true;
+
+    try {
+      await sairDaConta();
+
+      accountOverlay.hidden = true;
+      console.log("INHABIT — Sessão terminada.");
+
+    } catch (error) {
+      if (accountMessage) {
+        accountMessage.textContent =
+          "Não foi possível terminar a sessão. Tenta novamente.";
+      }
+      console.error(error);
+
+    } finally {
+      logoutButton.disabled = false;
+    }
   });
+});
 
