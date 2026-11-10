@@ -175,30 +175,32 @@ accountButton.addEventListener("click", async () => {
 });
 
 
+
 /* INHABIT — FECHAR DEFINIÇÕES DA CONTA */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const accountOverlay = document.getElementById("accountOverlay");
-  const accountClose = document.getElementById("accountClose");
+document.addEventListener("click", (event) => {
+  const overlay = document.getElementById("accountOverlay");
 
-  if (!accountOverlay || !accountClose) return;
+  if (!overlay || overlay.hidden) return;
 
-  accountClose.addEventListener("click", () => {
-    accountOverlay.hidden = true;
-  });
-
-  accountOverlay.addEventListener("click", (event) => {
-    if (event.target === accountOverlay) {
-      accountOverlay.hidden = true;
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      accountOverlay.hidden = true;
-    }
-  });
+  if (
+    event.target.closest("#accountClose") ||
+    event.target === overlay
+  ) {
+    overlay.hidden = true;
+  }
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    const overlay = document.getElementById("accountOverlay");
+
+    if (overlay) {
+      overlay.hidden = true;
+    }
+  }
+});
+
 
   });
 
