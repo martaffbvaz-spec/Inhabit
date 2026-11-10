@@ -149,26 +149,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   nav.appendChild(accountButton);
 
-  accountButton.addEventListener("click", async () => {
-    const { data, error } = await inhabitAuth.auth.getSession();
 
-    if (error) {
-      console.error("Erro ao verificar a sessão:", error.message);
-      return;
-    }
-
-   
-if (data.session) {
+accountButton.addEventListener("click", async () => {
   const accountOverlay = document.getElementById("accountOverlay");
   const accountEmail = document.getElementById("accountEmail");
 
-  if (accountOverlay && accountEmail) {
-    accountEmail.textContent = data.session.user.email;
-    accountOverlay.hidden = false;
+  const { data, error } = await inhabitAuth.auth.getSession();
+
+  if (error) {
+    console.error("Erro ao verificar a sessão:", error.message);
+    return;
   }
-} else {
-  window.abrirContaInhabit();
-}
+
+  if (data.session) {
+    if (accountEmail) {
+      accountEmail.textContent = data.session.user.email || "";
+    }
+
+    if (accountOverlay) {
+      accountOverlay.hidden = false;
+    }
+  } else {
+    window.abrirContaInhabit();
+  }
+});
+
 
 /* INHABIT — FECHAR DEFINIÇÕES DA CONTA */
 
